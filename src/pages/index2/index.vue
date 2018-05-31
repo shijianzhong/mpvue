@@ -1,15 +1,6 @@
 <template>
   <div class="container" @click="clickHandle('test click', $event)">
-    <div v-for="item in carinfo" :key=item.id>
-      <div class="pbtm">发布时间：{{item.dateAdd}}</div>
-      <info :item="item.jsonData"></info>
-    </div>
-    
-    <!-- <form class="form-container">
-      <input type="text" class="form-control" v-model="motto" placeholder="v-model" />
-      <input type="text" class="form-control" v-model.lazy="motto" placeholder="v-model.lazy" />
-    </form>
-    <a href="/pages/counter/main" class="counter">去往Vuex示例页面</a> -->
+    <info  v-for="item in carinfo" :key=item.id :item="item.jsonData"></info>
   </div>
 </template>
 
@@ -30,8 +21,7 @@ export default {
   },
   computed:{
     carinfo(){
-      console.log(vuex.state.wechat.infolist.data)
-      return vuex.state.wechat.infolist.data.filter(x=>x.jsonData.type==1)
+      return vuex.state.wechat.infolist.data.filter(x=>x.jsonData.type==2)
     }
   },
 
@@ -67,9 +57,6 @@ export default {
 </script>
 
 <style scoped>
-.pbtm{
-  /* border: 1rpx dashed green; */
-}
 .userinfo {
   display: flex;
   flex-direction: column;

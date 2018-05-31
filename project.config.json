@@ -10,7 +10,7 @@
 	"miniprogramRoot": "./dist/",
 	"compileType": "miniprogram",
 	"appid": "touristappid",
-	"projectname": "my-project",
+	"projectname": "carinfo",
 	"condition": {
 		"search": {
 			"current": -1,
