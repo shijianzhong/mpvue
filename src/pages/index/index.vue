@@ -5,11 +5,7 @@
       <info :item="item.jsonData"></info>
     </div>
     
-    <!-- <form class="form-container">
-      <input type="text" class="form-control" v-model="motto" placeholder="v-model" />
-      <input type="text" class="form-control" v-model.lazy="motto" placeholder="v-model.lazy" />
-    </form>
-    <a href="/pages/counter/main" class="counter">去往Vuex示例页面</a> -->
+
   </div>
 </template>
 
@@ -30,8 +26,9 @@ export default {
   },
   computed:{
     carinfo(){
-      console.log(vuex.state.wechat.infolist.data)
-      return vuex.state.wechat.infolist.data.filter(x=>x.jsonData.type==1)
+      if (vuex.state.wechat.infolist.data){
+      return vuex.state.wechat.infolist.data.filter(x=>x.jsonData.type==1||x.jsonData.type==3)
+      }
     }
   },
 
@@ -47,8 +44,14 @@ export default {
           wx.getUserInfo({
             success: (res) => {
               this.userInfo = res.userInfo
-            }
+              console.log(res.userInfo);
+            }     
           })
+        },
+        fail:()=>{
+        },
+        complete:(res)=>{
+          console.log(res)
         }
       })
     },
@@ -59,7 +62,7 @@ export default {
 
   created () {
     // 调用应用实例的方法获取全局数据
-    this.getUserInfo()
+    // this.getUserInfo()
     vuex.dispatch('getinfoList')
 
   }
@@ -68,7 +71,8 @@ export default {
 
 <style scoped>
 .pbtm{
-  /* border: 1rpx dashed green; */
+  margin-bottom: 10rpx;
+  color:orange;
 }
 .userinfo {
   display: flex;

@@ -1,6 +1,9 @@
 <template>
   <div class="container" @click="clickHandle('test click', $event)">
-    <info  v-for="item in carinfo" :key=item.id :item="item.jsonData"></info>
+      <div v-for="item in carinfo" :key=item.id>
+      <div class="pbtm">发布时间：{{item.dateAdd}}</div>
+      <info :item="item.jsonData"></info>
+    </div>
   </div>
 </template>
 
@@ -21,7 +24,8 @@ export default {
   },
   computed:{
     carinfo(){
-      return vuex.state.wechat.infolist.data.filter(x=>x.jsonData.type==2)
+      if(vuex.state.wechat.infolist.data){
+      return vuex.state.wechat.infolist.data.filter(x=>x.jsonData.type==2||x.jsonData.type==3)}
     }
   },
 
@@ -30,18 +34,6 @@ export default {
       const url = '../logs/main'
       wx.navigateTo({ url })
     },
-    getUserInfo () {
-      // 调用登录接口
-      wx.login({
-        success: () => {
-          wx.getUserInfo({
-            success: (res) => {
-              this.userInfo = res.userInfo
-            }
-          })
-        }
-      })
-    },
     clickHandle (msg, ev) {
       console.log('clickHandle:', msg, ev)
     }
@@ -49,14 +41,18 @@ export default {
 
   created () {
     // 调用应用实例的方法获取全局数据
-    this.getUserInfo()
-    vuex.dispatch('getinfoList')
+    // this.getUserInfo()
+    // vuex.dispatch('getinfoList')
 
   }
 }
 </script>
 
 <style scoped>
+.pbtm{
+  margin-bottom: 10rpx;
+  color:orange;
+}
 .userinfo {
   display: flex;
   flex-direction: column;

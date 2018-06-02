@@ -1,11 +1,10 @@
 <template>
-    <div class="info-container">
+    <div class="info-container" :class="{bck:item.type==3}">
         <div class="info-main">{{item.msg}}</div>
-        <div class="wxid">{{item.wxid}}</div>
-        <div class="tel">{{item.tel}}</div>
-        <div class="name">{{item.name}}</div>
+        <!-- <div class="tel">{{item.tel}}</div> -->
         <div>
-            <button @click="call">拨打电话</button>
+            <div class="telcon"><img @click="call"  src="../../static/tel.png"></div>
+            <div class="name">【{{item.author}}】</div>
         </div>
     </div>
 </template>
@@ -24,9 +23,23 @@ export default {
 </script>
 
 <style>
+.bck{
+  background-color:teal;
+}
+.name{
+  float: right;
+}
 .info-container {
   margin-bottom: 20rpx;
-  border: 1rpx dashed green;
   box-sizing: border-box;
+  overflow: auto;
+  border-bottom: 1rpx dashed green;
+}
+img{
+  width: 60rpx;
+  height: 60rpx;
+}
+.telcon{
+  float: left;
 }
 </style>
