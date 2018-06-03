@@ -23,12 +23,11 @@ const actions = {
         return setinfo(postdata).then(data => {
             console.log(data)
             wx.showToast({
-                title: '发布成果',
+                title: '发布成功',
                 icon: 'success',
                 duration: 1000,
                 mask: true
             })
-            getinfoList();
         })
     }
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="container" @click="clickHandle('test click', $event)">
       <div v-for="item in carinfo" :key=item.id>
-      <div class="pbtm">发布时间：{{item.dateAdd}}</div>
+      <div class="pbtm">发布时间：{{item.dateUpdate||item.dateAdd}}</div>
       <info :item="item.jsonData"></info>
     </div>
   </div>
@@ -44,6 +44,10 @@ export default {
     // this.getUserInfo()
     // vuex.dispatch('getinfoList')
 
+  },
+   onShow() {
+    console.log(112221);
+    vuex.dispatch('getinfoList')
   }
 }
 </script>
